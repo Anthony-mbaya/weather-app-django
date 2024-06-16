@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toni Weather Finder</title>
+    <style>
+        /* Basic Reset */
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Form Styling */
+        form {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2575fc;
+            box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
+            outline: none;
+        }
+
+        input[type="submit"] {
+            padding: 15px 30px;
+            background: #2575fc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease, transform 0.3s ease;
+            margin-top: 15px;
+        }
+
+        input[type="submit"]:hover {
+            background: #1a5bb8;
+            transform: translateY(-2px);
+        }
+
+        /* Output Styling */
+        .output h1 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .output h4 {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            input[type="text"] {
+                padding: 10px 12px;
+            }
+
+            input[type="submit"] {
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: black; color: white">
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="city">Enter City:
+                <input type="text" name="city" />
+            </label>
+            <input type="submit" value="Get Weather" />
+        </form>
+        {% if country_code %}
+        <div class="output">
+            <h1>Country_Code : {{country_code}}</h1>
+            <h4>Coordinate : {{coordinate}}</h4>
+            <h4>Temperature : {{temp}}</h4>
+            <h4>Pressure : {{pressure}}</h4>
+            <h4>Humidity : {{humidity}}</h4>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
